@@ -503,7 +503,7 @@
     },
     {
       "title": "",
-      "text": "%pyspark \n\nmode \u003d \"append\"\njdbc_url\u003d\"jdbc:postgresql://bigdataassignment.cfllboxbzvib.us-east-2.rds.amazonaws.com:5432/bigdataassignment2\"\nconfig \u003d {\"user\":\"root\", \n          \"password\": \"passwordroot\", \n          \"driver\":\"org.postgresql.Driver\"}",
+      "text": "%pyspark \n\nmode \u003d \"append\"\njdbc_url\u003d\"jdbc:postgresql://bigdataassignment.cfllboxbzvib.us-east-2.rds.amazonaws.com:5432/bigdataassignment2\"\nconfig \u003d {\"user\":\"...\", \n          \"password\": \"...\", \n          \"driver\":\"org.postgresql.Driver\"}",
       "user": "",
       "dateUpdated": "2019-05-14 18:19:23.000",
       "config": {
