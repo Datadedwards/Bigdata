@@ -1,0 +1,670 @@
+{
+  "paragraphs": [
+    {
+      "title": "",
+      "text": "%pyspark\n# Read in data from S3 Buckets\nfrom pyspark import SparkFiles\nurl \u003d\"https://s3.amazonaws.com/amazon-reviews-pds/tsv/amazon_reviews_us_Grocery_v1_00.tsv.gz\"\nspark.sparkContext.addFile(url)\ndf \u003d spark.read.csv(SparkFiles.get(\"amazon_reviews_us_Grocery_v1_00.tsv.gz\"), sep\u003d\"\\t\", header\u003dTrue)\n\ndf.show(10)",
+      "user": "",
+      "dateUpdated": "2019-05-14 19:23:14.000",
+      "config": {
+        "selectedInterpreter": {
+          "name": "spark.pyspark",
+          "profile": "pyspark",
+          "isCustom": false,
+          "editorLanguage": "python",
+          "className": "org.apache.zeppelin.spark.PySparkInterpreter",
+          "isDefault": false
+        },
+        "colWidth": 12.0,
+        "results": [
+          {}
+        ],
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "data": "+-----------+-----------+--------------+----------+--------------+--------------------+----------------+-----------+-------------+-----------+----+-----------------+--------------------+--------------------+-----------+\n|marketplace|customer_id|     review_id|product_id|product_parent|       product_title|product_category|star_rating|helpful_votes|total_votes|vine|verified_purchase|     review_headline|         review_body|review_date|\n+-----------+-----------+--------------+----------+--------------+--------------------+----------------+-----------+-------------+-----------+----+-----------------+--------------------+--------------------+-----------+\n|         US|   42521656|R26MV8D0KG6QI6|B000SAQCWC|     159713740|The Cravings Plac...|         Grocery|          5|            0|          0|   N|                Y|Using these for y...|As a family aller...| 2015-08-31|\n|         US|   12049833|R1OF8GP57AQ1A0|B00509LVIQ|     138680402|Mauna Loa Macadam...|         Grocery|          5|            0|          0|   N|                Y|           Wonderful|My favorite nut. ...| 2015-08-31|\n|         US|     107642|R3VDC1QB6MC4ZZ|B00KHXESLC|     252021703|Organic Matcha Gr...|         Grocery|          5|            0|          0|   N|                N|          Five Stars|This green tea ta...| 2015-08-31|\n|         US|    6042304|R12FA3DCF8F9ER|B000F8JIIC|     752728342|15oz Raspberry Ly...|         Grocery|          5|            0|          0|   N|                Y|          Five Stars|I love Melissa\u0027s ...| 2015-08-31|\n|         US|   18123821| RTWHVNV6X4CNJ|B004ZWR9RQ|     552138758|Stride Spark Kine...|         Grocery|          5|            0|          0|   N|                Y|          Five Stars|                good| 2015-08-31|\n|         US|   23649464| RIG9AWFOGRDVO|B00AL6QBZ6|     681475449|Herr\u0027s Popcorn Ho...|         Grocery|          2|            1|          1|   N|                Y|           Not Happy|The popcorn was s...| 2015-08-31|\n|         US|   32778285|R1S1XSG4ZCHDGS|B00BCNSTRA|     578681693|Larabar uber, 1.4...|         Grocery|          5|            1|          1|   N|                Y|          Five Stars|Love these bars, ...| 2015-08-31|\n|         US|   46612941| RB15NBVY5ELVW|B0089MM2BG|     350968436|Shirakiku Soba No...|         Grocery|          5|            2|          2|   N|                Y|          Five Stars|Love the taste bu...| 2015-08-31|\n|         US|   31525399| R56358YM1ZJ7I|B00Y1C9770|     729982780|Jif Chocolate Nut...|         Grocery|          5|            0|          0|   N|                N|      Great tasting!|I\u0027m a member of t...| 2015-08-31|\n|         US|   19624355|R1ODXB3C9UP3NL|B00J074W94|       2499702|Orgain Organic Pl...|         Grocery|          1|            1|          3|   N|                N|Disgusting now an...|Used to be a dece...| 2015-08-31|\n+-----------+-----------+--------------+----------+--------------+--------------------+----------------+-----------+-------------+-----------+----+-----------------+--------------------+--------------------+-----------+\nonly showing top 10 rows\n\n",
+            "type": "TEXT"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "",
+      "id": "20190514-174919_2053709105",
+      "dateCreated": "2019-05-14 17:49:19.000",
+      "dateStarted": "2019-05-14 18:15:34.865",
+      "dateFinished": "2019-05-14 18:16:36.910",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 0
+    },
+    {
+      "title": "",
+      "text": "%pyspark\nprint(df.count())\ndf \u003d df.dropna()\nprint(df.count())\ndf \u003d df.dropDuplicates()\nprint(df.count())",
+      "user": "",
+      "dateUpdated": "2019-05-14 18:18:11.000",
+      "config": {
+        "selectedInterpreter": {
+          "name": "spark.pyspark",
+          "profile": "pyspark",
+          "isCustom": false,
+          "editorLanguage": "python",
+          "className": "org.apache.zeppelin.spark.PySparkInterpreter",
+          "isDefault": false
+        },
+        "colWidth": 12.0,
+        "results": [
+          {}
+        ],
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "data": "2402458\n2402211\n2402211\n",
+            "type": "TEXT"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "",
+      "id": "20190514-175004_580851035",
+      "dateCreated": "2019-05-14 17:50:04.000",
+      "dateStarted": "2019-05-14 18:16:36.924",
+      "dateFinished": "2019-05-14 18:18:11.108",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 0
+    },
+    {
+      "title": "",
+      "text": "%pyspark\n\nfrom pyspark.sql.types import StructField, StringType, IntegerType, StructType\nfrom pyspark.sql.types import DateType\n\nschema \u003d [StructField(\"marketplace\", StringType(), True),\\\n          StructField(\"customer_id\", IntegerType(), True),\\\n          StructField(\"review_id\", StringType(), True),\\\n          StructField(\"product_id\", StringType(), True),\\\n          StructField(\"product_parent\", IntegerType(), True),\\\n          StructField(\"product_title\", StringType(), True),\\\n          StructField(\"product_category\", StringType(), True),\\\n          StructField(\"star_rating\", IntegerType(), True),\\\n          StructField(\"helpful_votes\", IntegerType(), True),\\\n          StructField(\"total_votes\", IntegerType(), True),\\\n          StructField(\"vine\", StringType(), True),\\\n          StructField(\"verified_purchase\", StringType(), True),\\\n          StructField(\"review_headline\", StringType(), True),\\\n          StructField(\"review_body\", StringType(), True),\\\n          StructField(\"review_date\", DateType(), True)\\\n          ,]\n\nschema",
+      "user": "",
+      "dateUpdated": "2019-05-14 18:18:11.000",
+      "config": {
+        "selectedInterpreter": {
+          "name": "spark.pyspark",
+          "profile": "pyspark",
+          "isCustom": false,
+          "editorLanguage": "python",
+          "className": "org.apache.zeppelin.spark.PySparkInterpreter",
+          "isDefault": false
+        },
+        "colWidth": 12.0,
+        "results": [
+          {}
+        ],
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "data": "[StructField(marketplace,StringType,true),\n StructField(customer_id,IntegerType,true),\n StructField(review_id,StringType,true),\n StructField(product_id,StringType,true),\n StructField(product_parent,IntegerType,true),\n StructField(product_title,StringType,true),\n StructField(product_category,StringType,true),\n StructField(star_rating,IntegerType,true),\n StructField(helpful_votes,IntegerType,true),\n StructField(total_votes,IntegerType,true),\n StructField(vine,StringType,true),\n StructField(verified_purchase,StringType,true),\n StructField(review_headline,StringType,true),\n StructField(review_body,StringType,true),\n StructField(review_date,DateType,true)]",
+            "type": "TEXT"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "",
+      "id": "20190514-175827_1228587897",
+      "dateCreated": "2019-05-14 17:58:27.000",
+      "dateStarted": "2019-05-14 18:18:11.112",
+      "dateFinished": "2019-05-14 18:18:11.228",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 0
+    },
+    {
+      "title": "",
+      "text": "%pyspark\n\ndata \u003d StructType(fields\u003dschema)\ndata",
+      "user": "",
+      "dateUpdated": "2019-05-14 18:18:11.000",
+      "config": {
+        "selectedInterpreter": {
+          "name": "spark.pyspark",
+          "profile": "pyspark",
+          "isCustom": false,
+          "editorLanguage": "python",
+          "className": "org.apache.zeppelin.spark.PySparkInterpreter",
+          "isDefault": false
+        },
+        "colWidth": 12.0,
+        "results": [
+          {}
+        ],
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "data": "StructType(List(StructField(marketplace,StringType,true),StructField(customer_id,IntegerType,true),StructField(review_id,StringType,true),StructField(product_id,StringType,true),StructField(product_parent,IntegerType,true),StructField(product_title,StringType,true),StructField(product_category,StringType,true),StructField(star_rating,IntegerType,true),StructField(helpful_votes,IntegerType,true),StructField(total_votes,IntegerType,true),StructField(vine,StringType,true),StructField(verified_purchase,StringType,true),StructField(review_headline,StringType,true),StructField(review_body,StringType,true),StructField(review_date,DateType,true)))",
+            "type": "TEXT"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "",
+      "id": "20190514-175002_353921787",
+      "dateCreated": "2019-05-14 17:50:02.000",
+      "dateStarted": "2019-05-14 18:18:11.230",
+      "dateFinished": "2019-05-14 18:18:11.350",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 0
+    },
+    {
+      "title": "",
+      "text": "%pyspark\n\ndataframe \u003d spark.read.csv(SparkFiles.get(\"amazon_reviews_us_Grocery_v1_00.tsv.gz\"), sep\u003d\"\\t\", schema\u003ddata, header\u003dTrue)\ndataframe.show(5)",
+      "user": "",
+      "dateUpdated": "2019-05-14 18:18:11.000",
+      "config": {
+        "selectedInterpreter": {
+          "name": "spark.pyspark",
+          "profile": "pyspark",
+          "isCustom": false,
+          "editorLanguage": "python",
+          "className": "org.apache.zeppelin.spark.PySparkInterpreter",
+          "isDefault": false
+        },
+        "colWidth": 12.0,
+        "results": [
+          {}
+        ],
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "data": "+-----------+-----------+--------------+----------+--------------+--------------------+----------------+-----------+-------------+-----------+----+-----------------+--------------------+--------------------+-----------+\n|marketplace|customer_id|     review_id|product_id|product_parent|       product_title|product_category|star_rating|helpful_votes|total_votes|vine|verified_purchase|     review_headline|         review_body|review_date|\n+-----------+-----------+--------------+----------+--------------+--------------------+----------------+-----------+-------------+-----------+----+-----------------+--------------------+--------------------+-----------+\n|         US|   42521656|R26MV8D0KG6QI6|B000SAQCWC|     159713740|The Cravings Plac...|         Grocery|          5|            0|          0|   N|                Y|Using these for y...|As a family aller...| 2015-08-31|\n|         US|   12049833|R1OF8GP57AQ1A0|B00509LVIQ|     138680402|Mauna Loa Macadam...|         Grocery|          5|            0|          0|   N|                Y|           Wonderful|My favorite nut. ...| 2015-08-31|\n|         US|     107642|R3VDC1QB6MC4ZZ|B00KHXESLC|     252021703|Organic Matcha Gr...|         Grocery|          5|            0|          0|   N|                N|          Five Stars|This green tea ta...| 2015-08-31|\n|         US|    6042304|R12FA3DCF8F9ER|B000F8JIIC|     752728342|15oz Raspberry Ly...|         Grocery|          5|            0|          0|   N|                Y|          Five Stars|I love Melissa\u0027s ...| 2015-08-31|\n|         US|   18123821| RTWHVNV6X4CNJ|B004ZWR9RQ|     552138758|Stride Spark Kine...|         Grocery|          5|            0|          0|   N|                Y|          Five Stars|                good| 2015-08-31|\n+-----------+-----------+--------------+----------+--------------+--------------------+----------------+-----------+-------------+-----------+----+-----------------+--------------------+--------------------+-----------+\nonly showing top 5 rows\n\n",
+            "type": "TEXT"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "",
+      "id": "20190514-175001_822506039",
+      "dateCreated": "2019-05-14 17:50:01.000",
+      "dateStarted": "2019-05-14 18:18:11.351",
+      "dateFinished": "2019-05-14 18:18:11.617",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 0
+    },
+    {
+      "title": "",
+      "text": "%pyspark\n\nreview_id_table \u003d dataframe.select([\"review_id\", \"customer_id\", \"product_id\", \"product_parent\", \"review_date\"])\n\nreview_id_table.show(10)",
+      "user": "",
+      "dateUpdated": "2019-05-14 18:18:11.000",
+      "config": {
+        "selectedInterpreter": {
+          "name": "spark.pyspark",
+          "profile": "pyspark",
+          "isCustom": false,
+          "editorLanguage": "python",
+          "className": "org.apache.zeppelin.spark.PySparkInterpreter",
+          "isDefault": false
+        },
+        "colWidth": 12.0,
+        "results": [
+          {}
+        ],
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "data": "+--------------+-----------+----------+--------------+-----------+\n|     review_id|customer_id|product_id|product_parent|review_date|\n+--------------+-----------+----------+--------------+-----------+\n|R26MV8D0KG6QI6|   42521656|B000SAQCWC|     159713740| 2015-08-31|\n|R1OF8GP57AQ1A0|   12049833|B00509LVIQ|     138680402| 2015-08-31|\n|R3VDC1QB6MC4ZZ|     107642|B00KHXESLC|     252021703| 2015-08-31|\n|R12FA3DCF8F9ER|    6042304|B000F8JIIC|     752728342| 2015-08-31|\n| RTWHVNV6X4CNJ|   18123821|B004ZWR9RQ|     552138758| 2015-08-31|\n| RIG9AWFOGRDVO|   23649464|B00AL6QBZ6|     681475449| 2015-08-31|\n|R1S1XSG4ZCHDGS|   32778285|B00BCNSTRA|     578681693| 2015-08-31|\n| RB15NBVY5ELVW|   46612941|B0089MM2BG|     350968436| 2015-08-31|\n| R56358YM1ZJ7I|   31525399|B00Y1C9770|     729982780| 2015-08-31|\n|R1ODXB3C9UP3NL|   19624355|B00J074W94|       2499702| 2015-08-31|\n+--------------+-----------+----------+--------------+-----------+\nonly showing top 10 rows\n\n",
+            "type": "TEXT"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "",
+      "id": "20190514-175000_1353556852",
+      "dateCreated": "2019-05-14 17:50:00.000",
+      "dateStarted": "2019-05-14 18:18:11.618",
+      "dateFinished": "2019-05-14 18:18:11.886",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 0
+    },
+    {
+      "title": "",
+      "text": "%pyspark\n\nproducts \u003d dataframe.select([\"product_id\", \"product_title\"])\n\nproducts.show(10)",
+      "user": "",
+      "dateUpdated": "2019-05-14 18:19:03.000",
+      "config": {
+        "selectedInterpreter": {
+          "name": "spark.pyspark",
+          "profile": "pyspark",
+          "isCustom": false,
+          "editorLanguage": "python",
+          "className": "org.apache.zeppelin.spark.PySparkInterpreter",
+          "isDefault": false
+        },
+        "colWidth": 12.0,
+        "results": [
+          {}
+        ],
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "data": "+----------+--------------------+\n|product_id|       product_title|\n+----------+--------------------+\n|B000SAQCWC|The Cravings Plac...|\n|B00509LVIQ|Mauna Loa Macadam...|\n|B00KHXESLC|Organic Matcha Gr...|\n|B000F8JIIC|15oz Raspberry Ly...|\n|B004ZWR9RQ|Stride Spark Kine...|\n|B00AL6QBZ6|Herr\u0027s Popcorn Ho...|\n|B00BCNSTRA|Larabar uber, 1.4...|\n|B0089MM2BG|Shirakiku Soba No...|\n|B00Y1C9770|Jif Chocolate Nut...|\n|B00J074W94|Orgain Organic Pl...|\n+----------+--------------------+\nonly showing top 10 rows\n\n",
+            "type": "TEXT"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "",
+      "id": "20190514-174959_1850360347",
+      "dateCreated": "2019-05-14 17:49:59.000",
+      "dateStarted": "2019-05-14 18:19:03.609",
+      "dateFinished": "2019-05-14 18:19:03.806",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 0
+    },
+    {
+      "title": "",
+      "text": "%pyspark\n\ncustomer_table \u003d dataframe.select([\"customer_id\"])\n\ncustomer_table.show(10)",
+      "user": "",
+      "dateUpdated": "2019-05-14 18:19:06.000",
+      "config": {
+        "selectedInterpreter": {
+          "name": "spark.pyspark",
+          "profile": "pyspark",
+          "isCustom": false,
+          "editorLanguage": "python",
+          "className": "org.apache.zeppelin.spark.PySparkInterpreter",
+          "isDefault": false
+        },
+        "colWidth": 12.0,
+        "results": [
+          {}
+        ],
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "data": "+-----------+\n|customer_id|\n+-----------+\n|   42521656|\n|   12049833|\n|     107642|\n|    6042304|\n|   18123821|\n|   23649464|\n|   32778285|\n|   46612941|\n|   31525399|\n|   19624355|\n+-----------+\nonly showing top 10 rows\n\n",
+            "type": "TEXT"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "",
+      "id": "20190514-174959_1855575682",
+      "dateCreated": "2019-05-14 17:49:59.000",
+      "dateStarted": "2019-05-14 18:19:05.917",
+      "dateFinished": "2019-05-14 18:19:06.081",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 0
+    },
+    {
+      "title": "",
+      "text": "%pyspark\ndef dfZipWithIndex(df, offset\u003d1, colName\u003d\"rowId\"):\n\n\n    new_schema \u003d StructType(\n\n        df.schema.fields \n        +[StructField(colName, LongType(), True)]  \n    )\n\n    zipped_rdd \u003d df.rdd.zipWithIndex()\n\n    new_rdd \u003d zipped_rdd.map(lambda (row, rowId): (list(row) + [rowId + offset] ))\n\n    return spark.createDataFrame(new_rdd, new_schema)",
+      "user": "",
+      "dateUpdated": "2019-05-14 18:42:53.000",
+      "config": {
+        "selectedInterpreter": {
+          "name": "spark.pyspark",
+          "profile": "pyspark",
+          "isCustom": false,
+          "editorLanguage": "python",
+          "className": "org.apache.zeppelin.spark.PySparkInterpreter",
+          "isDefault": false
+        },
+        "colWidth": 12.0,
+        "results": [
+          {}
+        ],
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "",
+      "id": "20190514-174957_1114726915",
+      "dateCreated": "2019-05-14 17:49:57.000",
+      "dateStarted": "2019-05-14 18:19:10.386",
+      "dateFinished": "2019-05-14 18:19:10.500",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 0
+    },
+    {
+      "title": "",
+      "text": "%pyspark\n\nfrom pyspark.sql.types import LongType\ncustomer_table \u003d dfZipWithIndex(customer_table, offset\u003d1, colName\u003d\"customer_count\")\n\ncustomer_table.show(10)",
+      "user": "",
+      "dateUpdated": "2019-05-14 18:19:15.000",
+      "config": {
+        "selectedInterpreter": {
+          "name": "spark.pyspark",
+          "profile": "pyspark",
+          "isCustom": false,
+          "editorLanguage": "python",
+          "className": "org.apache.zeppelin.spark.PySparkInterpreter",
+          "isDefault": false
+        },
+        "colWidth": 12.0,
+        "results": [
+          {}
+        ],
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "data": "+-----------+--------------+\n|customer_id|customer_count|\n+-----------+--------------+\n|   42521656|             1|\n|   12049833|             2|\n|     107642|             3|\n|    6042304|             4|\n|   18123821|             5|\n|   23649464|             6|\n|   32778285|             7|\n|   46612941|             8|\n|   31525399|             9|\n|   19624355|            10|\n+-----------+--------------+\nonly showing top 10 rows\n\n",
+            "type": "TEXT"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "",
+      "id": "20190514-180208_1272352947",
+      "dateCreated": "2019-05-14 18:02:08.000",
+      "dateStarted": "2019-05-14 18:19:14.516",
+      "dateFinished": "2019-05-14 18:19:15.434",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 0
+    },
+    {
+      "title": "",
+      "text": "%pyspark\nreviews_df \u003d dataframe.select([\"customer_id\", \"product_id\", \"product_title\", \"star_rating\"])\n\nreviews_df.show(10)",
+      "user": "",
+      "dateUpdated": "2019-05-14 18:19:20.000",
+      "config": {
+        "selectedInterpreter": {
+          "name": "spark.pyspark",
+          "profile": "pyspark",
+          "isCustom": false,
+          "editorLanguage": "python",
+          "className": "org.apache.zeppelin.spark.PySparkInterpreter",
+          "isDefault": false
+        },
+        "colWidth": 12.0,
+        "results": [
+          {}
+        ],
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "data": "+-----------+----------+--------------------+-----------+\n|customer_id|product_id|       product_title|star_rating|\n+-----------+----------+--------------------+-----------+\n|   42521656|B000SAQCWC|The Cravings Plac...|          5|\n|   12049833|B00509LVIQ|Mauna Loa Macadam...|          5|\n|     107642|B00KHXESLC|Organic Matcha Gr...|          5|\n|    6042304|B000F8JIIC|15oz Raspberry Ly...|          5|\n|   18123821|B004ZWR9RQ|Stride Spark Kine...|          5|\n|   23649464|B00AL6QBZ6|Herr\u0027s Popcorn Ho...|          2|\n|   32778285|B00BCNSTRA|Larabar uber, 1.4...|          5|\n|   46612941|B0089MM2BG|Shirakiku Soba No...|          5|\n|   31525399|B00Y1C9770|Jif Chocolate Nut...|          5|\n|   19624355|B00J074W94|Orgain Organic Pl...|          1|\n+-----------+----------+--------------------+-----------+\nonly showing top 10 rows\n\n",
+            "type": "TEXT"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "",
+      "id": "20190514-180318_1549106741",
+      "dateCreated": "2019-05-14 18:03:18.000",
+      "dateStarted": "2019-05-14 18:19:20.278",
+      "dateFinished": "2019-05-14 18:19:20.494",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 0
+    },
+    {
+      "title": "",
+      "text": "%pyspark \n\nmode \u003d \"append\"\njdbc_url\u003d\"jdbc:postgresql://bigdataassignment.cfllboxbzvib.us-east-2.rds.amazonaws.com:5432/bigdataassignment2\"\nconfig \u003d {\"user\":\"root\", \n          \"password\": \"passwordroot\", \n          \"driver\":\"org.postgresql.Driver\"}",
+      "user": "",
+      "dateUpdated": "2019-05-14 18:19:23.000",
+      "config": {
+        "selectedInterpreter": {
+          "name": "spark.pyspark",
+          "profile": "pyspark",
+          "isCustom": false,
+          "editorLanguage": "python",
+          "className": "org.apache.zeppelin.spark.PySparkInterpreter",
+          "isDefault": false
+        },
+        "colWidth": 12.0,
+        "results": [],
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "",
+      "id": "20190514-180318_157033655",
+      "dateCreated": "2019-05-14 18:03:18.000",
+      "dateStarted": "2019-05-14 18:19:23.881",
+      "dateFinished": "2019-05-14 18:19:23.995",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 0
+    },
+    {
+      "title": "",
+      "text": "%pyspark\n\n\nreview_id_table.write.jdbc(url\u003djdbc_url, table\u003d\u0027amazon_grocery_review\u0027, mode\u003dmode, properties\u003dconfig)",
+      "user": "",
+      "dateUpdated": "2019-05-14 19:01:10.000",
+      "config": {
+        "selectedInterpreter": {
+          "name": "spark.pyspark",
+          "profile": "pyspark",
+          "isCustom": false,
+          "editorLanguage": "python",
+          "className": "org.apache.zeppelin.spark.PySparkInterpreter",
+          "isDefault": false
+        },
+        "colWidth": 12.0,
+        "results": [
+          {}
+        ],
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "",
+      "id": "20190514-180317_2128627588",
+      "dateCreated": "2019-05-14 18:03:17.000",
+      "dateStarted": "2019-05-14 18:48:45.195",
+      "dateFinished": "2019-05-14 19:01:10.829",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 0
+    },
+    {
+      "title": "",
+      "text": "%pyspark\n\n\nproducts.write.jdbc(url\u003djdbc_url, table\u003d\u0027amazon_grocery_product_info\u0027, mode\u003dmode, properties\u003dconfig)",
+      "user": "",
+      "dateUpdated": "2019-05-14 18:36:44.000",
+      "config": {
+        "selectedInterpreter": {
+          "name": "spark.pyspark",
+          "profile": "pyspark",
+          "isCustom": false,
+          "editorLanguage": "python",
+          "className": "org.apache.zeppelin.spark.PySparkInterpreter",
+          "isDefault": false
+        },
+        "colWidth": 12.0,
+        "results": [],
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "",
+      "id": "20190514-180315_2062453350",
+      "dateCreated": "2019-05-14 18:03:15.000",
+      "dateStarted": "2019-05-14 18:24:25.445",
+      "dateFinished": "2019-05-14 18:36:44.032",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 0
+    },
+    {
+      "title": "",
+      "text": "%pyspark\n\ncustomer_table.write.jdbc(url\u003djdbc_url, table\u003d\u0027amazon_grocery_customer_info\u0027, mode\u003dmode, properties\u003dconfig)",
+      "user": "",
+      "dateUpdated": "2019-05-14 18:48:45.000",
+      "config": {
+        "selectedInterpreter": {
+          "name": "spark.pyspark",
+          "profile": "pyspark",
+          "isCustom": false,
+          "editorLanguage": "python",
+          "className": "org.apache.zeppelin.spark.PySparkInterpreter",
+          "isDefault": false
+        },
+        "colWidth": 12.0,
+        "results": [],
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "",
+      "id": "20190514-180958_60379489",
+      "dateCreated": "2019-05-14 18:09:58.000",
+      "dateStarted": "2019-05-14 18:36:44.034",
+      "dateFinished": "2019-05-14 18:48:45.193",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 0
+    }
+  ],
+  "name": "Big_Data_Assignment_Grocery",
+  "id": "b50853e8f440425c9ecbc8c611f5e168",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {},
+  "info": {}
+}
