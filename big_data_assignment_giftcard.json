@@ -194,7 +194,7 @@
     },
     {
       "title": "",
-      "text": "%pyspark \n\n\nmode \u003d \"append\"\njdbc_url\u003d\"jdbc:postgresql://bigdataassignment.cfllboxbzvib.us-east-2.rds.amazonaws.com:5432/bigdataassignment\"\nconfig \u003d {\"user\":\"root\", \n          \"password\": \"passwordroot\", \n          \"driver\":\"org.postgresql.Driver\"}",
+      "text": "%pyspark \n\n\nmode \u003d \"append\"\njdbc_url\u003d\"jdbc:postgresql://bigdataassignment.cfllboxbzvib.us-east-2.rds.amazonaws.com:5432/bigdataassignment\"\nconfig \u003d {\"user\":\"...\", \n          \"password\": \"...\", \n          \"driver\":\"org.postgresql.Driver\"}",
       "user": "",
       "dateUpdated": "2019-05-14 18:38:15.000",
       "config": {
